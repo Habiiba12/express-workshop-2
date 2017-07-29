@@ -6,10 +6,14 @@ const app = express();
 const fs = require("fs");
 const exphbs = require('express-handlebars');
 
+const readposts = require("./helpers/readPosts");
+
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static("public", { 'extensions': ['html'] }));
+
 
 app.get('/', function (req, res) {
   const filePath = __dirname + '/data/posts.json';
@@ -32,6 +36,12 @@ app.get("/my-cv", function (req, res) {
     subheading: "subheading"
   });
 
+})
+
+app.get("/api/posts",function(req,res){
+  readposts(function(error,posts){
+    res.json(posts);
+  })
 })
 
 app.get("/contact", function (req, res) {

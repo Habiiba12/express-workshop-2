@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
     const postsJson = JSON.parse(fileData);
     // send the json to the Template to render
     res.render('index', {
-      title: 'Etzali Profile', // insert your name instead
+      title: 'Habiiba Profile', // insert your name instead
       posts: postsJson
     });
   };
